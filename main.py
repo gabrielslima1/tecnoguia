@@ -25,7 +25,7 @@ def main():
     st.markdown("<h1 style='text-align: center;'>TecnoGuia</h1>", unsafe_allow_html=True)
     st.markdown("<h5 style='text-align: center;'>O TecnoGuia é um assistente criado utilizando a API do Google Gemini, para instruir jovens com interesse em tecnologia em qual carreira seguir.</h5>", unsafe_allow_html=True)
     
-    st.markdown("<h5 style='text-align: center;'>Para utilizar é fácil: basta preencher abaixo com a sua GOOGLE API KEY, que pode ser criada **aqui** e os campos seguintes com as suas informações e clicar em enviar. Dessa forma, o Gemini vai poder te direcionar melhor!</h5>", unsafe_allow_html=True)
+    st.markdown("<h5 style='text-align: center;'>Para utilizar é fácil: basta preencher abaixo com a sua GOOGLE API KEY, que pode ser criada [aqui](https://aistudio.google.com/app/apikey/) e os campos seguintes com as suas informações e clicar em enviar. Dessa forma, o Gemini vai poder te direcionar melhor!</h5>", unsafe_allow_html=True)
     #teste
     GOOGLE_API_KEY = st.text_input('Insira aqui a sua GOOGLE API KEY')
     genai.configure(api_key=GOOGLE_API_KEY)
@@ -77,24 +77,27 @@ def main():
         if check == 0:
             st.error("Por favor, selecione pelo menos uma opção nos campos 1 e 2.")
         else:
-            with st.spinner ('Ótimas opções! Estou pensando nos melhores cursos para você...'):
-                texto = f'''Olá Gemini! Sou um estudante do ensino médio interessado em seguir carreira na área de tecnologia, mas preciso de ajuda para escolher o curso de graduação ideal. Para que você possa me conhecer melhor, aqui estão algumas informações sobre mim:
-                        Áreas de Interesse: {areas_interesse};
-                        Habilidades: {habilidades};
-                        Estilo de Aprendizagem: {estilo_aprendizagem};
-                        Perfil Profissional: me vejo trabalhando {perfil_profissional};
-                        Nível de Matemática: eu me sinto {nivel_matematica} com matemática e lógica;
-                        Criatividade: eu gosto de {criatividade};
-                        Comunicação: {comunicacao} para me comunicar em equipe.;
-                        Afinidade com Linguagens: eu {afinidade_linguagens};
-                        Pensamento Lógico: {pensamento_logico};
-                        Resolução de Problemas: {resolucao_problemas} gosto de desafios e encontrar soluções para problemas complexos;
+            try:
+                with st.spinner ('Ótimas opções! Estou pensando nos melhores cursos para você...'):
+                    texto = f'''Olá Gemini! Sou um estudante do ensino médio interessado em seguir carreira na área de tecnologia, mas preciso de ajuda para escolher o curso de graduação ideal. Para que você possa me conhecer melhor, aqui estão algumas informações sobre mim:
+                            Áreas de Interesse: {areas_interesse};
+                            Habilidades: {habilidades};
+                            Estilo de Aprendizagem: {estilo_aprendizagem};
+                            Perfil Profissional: me vejo trabalhando {perfil_profissional};
+                            Nível de Matemática: eu me sinto {nivel_matematica} com matemática e lógica;
+                            Criatividade: eu gosto de {criatividade};
+                            Comunicação: {comunicacao} para me comunicar em equipe.;
+                            Afinidade com Linguagens: eu {afinidade_linguagens};
+                            Pensamento Lógico: {pensamento_logico};
+                            Resolução de Problemas: {resolucao_problemas} gosto de desafios e encontrar soluções para problemas complexos;
 
-                        Com base nessas informações, você poderia me sugerir até 2 cursos de graduação em tecnologia que se encaixam no meu perfil?
-                        A partir disso, resuma levemente, em até 2 linhas, os cursos indicados.'''
-                
-                response = model.generate_content(texto)
-                st.write(response.text)
+                            Com base nessas informações, você poderia me sugerir até 2 cursos de graduação em tecnologia que se encaixam no meu perfil?
+                            A partir disso, resuma levemente, em até 2 linhas, os cursos indicados.'''
+                    
+                    response = model.generate_content(texto)
+                    st.write(response.text)
+            except:
+                st.error("Por favor, insira uma Google API KEY válida.")
 
 if __name__ == '__main__':
     main()
