@@ -26,7 +26,7 @@ def main():
     st.markdown("<h5 style='text-align: center;'>O TecnoGuia é um assistente criado utilizando a API do Google Gemini, para instruir jovens com interesse em tecnologia em qual carreira seguir.</h5>", unsafe_allow_html=True)
     
     st.markdown("<h5 style='text-align: center;'>Para utilizar é fácil: basta preencher abaixo com a sua GOOGLE API KEY, que pode ser criada **aqui** e os campos seguintes com as suas informações e clicar em enviar. Dessa forma, o Gemini vai poder te direcionar melhor!</h5>", unsafe_allow_html=True)
-    
+    #teste
     GOOGLE_API_KEY = st.text_input('Insira aqui a sua GOOGLE API KEY')
     genai.configure(api_key=GOOGLE_API_KEY)
     st.write(GOOGLE_API_KEY)
