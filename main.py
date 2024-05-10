@@ -22,14 +22,18 @@ def verificar_preenchimento(*args):
 
 def main():
     #definindo titulo da página
+    esq,cent,dir=st.columns(3)
+    with cent:
+        esq1,cent1,dir1=st.columns(3)
+        with cent1:
+            st.image('utilities/logotipo2.png')
     st.markdown("<h1 style='text-align: center;'>TecnoGuia</h1>", unsafe_allow_html=True)
     st.markdown("<h5 style='text-align: center;'>O TecnoGuia é um assistente criado utilizando a API do Google Gemini, para instruir jovens com interesse em tecnologia em qual carreira seguir.</h5>", unsafe_allow_html=True)
-    
-    st.markdown("<h5 style='text-align: center;'>Para utilizar é fácil: basta preencher abaixo com a sua GOOGLE API KEY, que pode ser criada [aqui](https://aistudio.google.com/app/apikey/) e os campos seguintes com as suas informações e clicar em enviar. Dessa forma, o Gemini vai poder te direcionar melhor!</h5>", unsafe_allow_html=True)
+    st.markdown("<h5 style='text-align: center;'>Para utilizar é fácil: basta preencher o campo abaixo com a sua GOOGLE API KEY, que pode ser criada através do botão inidicado e os campos seguintes com as suas informações e clicar em enviar. Dessa forma, o Gemini vai poder te direcionar melhor!</h5>", unsafe_allow_html=True)
+    st.link_button("Criar API Key", url='https://aistudio.google.com/app/apikey')
     #teste
     GOOGLE_API_KEY = st.text_input('Insira aqui a sua GOOGLE API KEY')
     genai.configure(api_key=GOOGLE_API_KEY)
-    st.write(GOOGLE_API_KEY)
     
     st.write('---')
     generation_config={
