@@ -1,6 +1,4 @@
-```bash
-
-```
+![logo](utilities/logotipo2.png)
 
 # TECNOGUIA
 
